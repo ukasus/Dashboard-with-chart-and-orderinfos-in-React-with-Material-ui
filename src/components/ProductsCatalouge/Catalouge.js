@@ -3,47 +3,42 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
-
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-
+import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-
-import { mainListItems } from '../listItems';
-
-import Chart from './Chart';
-
-import Orders from './Orders';
-import AltCard from './AltCard';
-import { Box } from '@material-ui/core';
-import Users from './Users';
-import DetailOrderReport from './DetailOrderReport';
-
+import Paper from '@material-ui/core/Paper'
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import { mainListItems } from '../listItems';
+import List from '@material-ui/core/List';
+import Item from './Item';
 
 
 
-function gettop5order() {
-  //Here we can make call to our rest api's to fetch data
-  return [
-    { orderno: 0, totalamount: '16 Mar, 2019', totalquantity: 'Elvis Presley', username: 'Tupelo, MS' },
-    { orderno: 1, totalamount: '16 Mar, 2019', totalquantity: 'Elvis Presley', username: 'Tupelo, MS' }
 
-  ];
+
+function getproducts() {
+  //Here fetch the all available products from the api and return as a array
+  return ['Product1', 'Product2', 'Product3', 'Product4']
 }
 
 
 
+export default function Catalouge() {
 
-export default function Dashboard() {
-  const first5order = gettop5order();
+
+  var initialp = getproducts();
+
+
+
+
+
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -53,7 +48,7 @@ export default function Dashboard() {
     setOpen(false);
   };
 
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  //const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
     <div className={classes.root}>
@@ -70,7 +65,7 @@ export default function Dashboard() {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard
+            Product Catalouge
           </Typography>
 
         </Toolbar>
@@ -97,56 +92,19 @@ export default function Dashboard() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
+
+
             <Box display='flex' >
-              <Paper className={classes.paper}>
-                <AltCard to='200' wo='150' up={"Today's order"} dp={"Current Week Order"} />
-              </Paper>
-              <Paper className={classes.paper}>
-                <AltCard to='20000' wo='150' up={"Today's order amount"} dp={"Current Week amount"} />
-              </Paper>
-              <Paper className={classes.paper}>
-                <AltCard to='400' wo='200' up={"MTD order"} dp={"Last Month Order"} />
-              </Paper>
-              <Paper className={classes.paper}>
-                <AltCard to='65000' wo='150' up={"MTD order amount"} dp={"Last month amount"} />
-              </Paper>
+
+              {
+                initialp.map((pro) => (<div>
+                  <Paper className={classes.paper}>
+                    <Item productname={pro}></Item>
+                  </Paper>
+                </div>))
+              }
             </Box>
-            {/* Chart */}
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                <Chart />
-              </Paper>
-            </Grid>
-            {/* Recent Deposits */}
 
-            {/* Recent Orders */}
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Orders title='Top 5 order' order={first5order} />
-              </Paper>
-            </Grid>
-
-
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Orders title='Bottom 5 order' order={first5order} />
-              </Paper>
-            </Grid>
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Users title='Top 5 User' />
-              </Paper>
-            </Grid>
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Users title='Bottom 5 User' />
-              </Paper>
-            </Grid>
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <DetailOrderReport title='Detail Order Report' />
-              </Paper>
-            </Grid>
 
 
 
@@ -228,7 +186,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(4),
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(12),
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',

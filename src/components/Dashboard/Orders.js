@@ -1,6 +1,4 @@
 import React from 'react';
-
-import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -11,19 +9,13 @@ import Title from './Title';
 // Generate Order Data
 
 
-function preventDefault(event) {
-  event.preventDefault();
-}
 
-const useStyles = makeStyles((theme) => ({
-  seeMore: {
-    marginTop: theme.spacing(3),
-  },
-}));
+
+
 
 export default function Orders(props) {
-  const classes = useStyles();
-  var rows=props.order
+
+  var rows = props.order
   return (
     <React.Fragment>
       <Title>{props.title}</Title>
@@ -34,7 +26,7 @@ export default function Orders(props) {
             <TableCell>Total Amount</TableCell>
             <TableCell>Total Quantity</TableCell>
             <TableCell align='right'>UserName</TableCell>
-            
+
           </TableRow>
         </TableHead>
         <TableBody>
@@ -43,13 +35,13 @@ export default function Orders(props) {
               <TableCell>{row.orderno}</TableCell>
               <TableCell>{row.totalamount}</TableCell>
               <TableCell>{row.totalquantity}</TableCell>
-              
+
               <TableCell align="right">{row.username}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-     
+
     </React.Fragment>
   );
 }
