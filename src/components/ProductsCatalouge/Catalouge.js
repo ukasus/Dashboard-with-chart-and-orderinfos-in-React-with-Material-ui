@@ -94,11 +94,11 @@ export default function Catalouge() {
           <Grid container spacing={3}>
 
 
-            <Box display='flex' >
+            <Box display="flex" flexDirection="row" flexWrap="wrap" >
 
               {
                 initialp.map((pro) => (<div>
-                  <Paper className={classes.paper}>
+                  <Paper className={classes.paper} >
                     <Item productname={pro}></Item>
                   </Paper>
                 </div>))
@@ -186,10 +186,11 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(4),
   },
   paper: {
-    padding: theme.spacing(12),
+    padding: theme.spacing(10),
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
+    marginTop:5,
   },
   fixedHeight: {
     height: 240,

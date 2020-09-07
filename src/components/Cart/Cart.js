@@ -17,8 +17,7 @@ import List from '@material-ui/core/List';
 import Grid from '@material-ui/core/Grid';
 import Drawer from '@material-ui/core/Drawer';
 import { Link } from 'react-router-dom';
-
-
+import Box from '@material-ui/core/Box'
 
 
 function getproducts() {
@@ -95,12 +94,12 @@ export default function Cart() {
           {
             initialp.map((row) => (
               <div>
-                <Grid item xs={12} >
+               <Box display="flex" flexDirection="row" flexWrap="wrap" >
                   <Paper className={classes.paper}>
                     <Product ide={row}></Product>
                   </Paper>
 
-                </Grid>
+                </Box>
               </div>
             ))
           }
@@ -203,6 +202,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
+    marginTop:20,
   },
   fixedHeight: {
     height: 240,

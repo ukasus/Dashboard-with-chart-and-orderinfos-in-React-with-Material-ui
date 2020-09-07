@@ -14,7 +14,7 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import {mainListItems} from '../listItems';
 import List from '@material-ui/core/List';
-import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import Drawer from '@material-ui/core/Drawer';
 
 
@@ -95,22 +95,21 @@ export default function Cart() {
           </Typography>
           
            </Paper>
-          
-          <Grid container spacing={3}>
+       <Box display="flex" flexDirection="row" flexWrap="wrap" >
         
         {
           initialp.map((row)=> (
             <div>
-           <Grid item xs={12} >
+          
            <Paper className={classes.paper}>
            <Product ide={row}></Product>
            </Paper>
             
-           </Grid>
+           
             </div>
           ))
         }
-        </Grid>
+        </Box>
         <Paper className={classes.paper}>
         <Typography component="h6" variant="h6" align="left">
             Total Products:{initialp.length}
@@ -219,6 +218,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
+    marginTop:20
   },
   fixedHeight: {
     height: 240,
