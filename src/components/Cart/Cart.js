@@ -4,10 +4,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
+
 import Typography from '@material-ui/core/Typography';
-import Product from './Product.js';
+
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Divider from '@material-ui/core/Divider';
@@ -15,19 +14,20 @@ import IconButton from '@material-ui/core/IconButton';
 import { mainListItems } from '../listItems';
 import List from '@material-ui/core/List';
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
 import Drawer from '@material-ui/core/Drawer';
 import { Link } from 'react-router-dom';
-import Box from '@material-ui/core/Box'
+import { connect } from 'react-redux';
+
+import { removeItem, addQuantity, subtractQuantity } from '../actions/cartActions';
+import Recipe from './Recipe';
 
 
-function getproducts() {
-  //fetch the products that are in the cart from the backend server
-  return ['Product1', 'Product2', 'Product3', 'Product4']
-}
 
-export default function Cart() {
 
-  var initialp = getproducts();
+const Cart = (props) => {
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -36,6 +36,40 @@ export default function Cart() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  let addedItems = props.items.length ?
+    (
+      props.items.map(item => {
+        return (
+
+          <li className="collection-item avatar" key={item.id}>
+            <div className="item-img">
+              <img src={item.img} alt={item.img} className="" />
+            </div>
+
+            <div className="item-desc">
+              <span className="title">{item.title}</span>
+              <p>{item.desc}</p>
+              <p><b>Price: {item.price} Rupay</b></p>
+              <p>
+                <b>Quantity: {item.quantity}</b>
+              </p>
+              <div className="add-remove">
+                <button className="material-icons" onClick={() => { props.addQuantity(item.id) }}>arrow_drop_up</button>
+                <button className="material-icons" onClick={() => { props.subtractQuantity(item.id) }}>arrow_drop_down</button>
+              </div>
+              <button className="waves-effect waves-light btn pink remove" onClick={() => { props.removeItem(item.id) }}>Remove</button>
+            </div>
+
+          </li>
+
+        )
+      })
+    ) :
+
+    (
+      <p>Nothing.</p>
+    )
 
 
 
@@ -80,48 +114,30 @@ export default function Cart() {
       </Drawer>
 
 
-      <main className={classes.layout}>
+      <main className={classes.content}>
+        <div className={classes.appBarSpacer} />
+        <Container maxWidth="lg" className={classes.container}>
+          <Grid container spacing={3}>
 
-        <Paper className={classes.paper}>
-          <Typography component="h1" variant="h4" align="center">
-            Items in Your Cart
-          </Typography>
 
-        </Paper>
 
-        <Grid container spacing={3}>
-
-          {
-            initialp.map((row) => (
-              <div>
-               <Box display="flex" flexDirection="row" flexWrap="wrap" >
-                  <Paper className={classes.paper}>
-                    <Product ide={row}></Product>
-                  </Paper>
-
-                </Box>
+            <div className="container">
+              <div className="cart">
+                <h5>You have ordered:</h5>
+                <ul className="collection">
+                  {addedItems}
+                </ul>
               </div>
-            ))
-          }
-        </Grid>
-
-        <Paper className={classes.paper}>
-          <Button
-            variant="contained"
-            color="primary"
-            component={Link} to="/orderSummary"
-            className={classes.button}
-          >
-            Checkout
-                  </Button>
-        </Paper>
+              <Recipe></Recipe>
+            </div>
 
 
 
 
 
 
-
+          </Grid>
+        </Container>
       </main>
     </div>
   );
@@ -202,9 +218,24 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
-    marginTop:20,
+    marginTop: 20,
   },
   fixedHeight: {
     height: 240,
   },
 }));
+
+const mapStateToProps = (state) => {
+  return {
+    items: state.addedItems,
+    //addedItems: state.addedItems
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    removeItem: (id) => { dispatch(removeItem(id)) },
+    addQuantity: (id) => { dispatch(addQuantity(id)) },
+    subtractQuantity: (id) => { dispatch(subtractQuantity(id)) }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)

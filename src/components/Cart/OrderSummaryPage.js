@@ -7,7 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Product from './Product.js';
+
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Divider from '@material-ui/core/Divider';
@@ -21,15 +21,11 @@ import Drawer from '@material-ui/core/Drawer';
 
 
 
-function getproducts()
-{
-  //fetch the products that are in the cart from the backend server
-    return ['Product1','Product2','Product3','Product4']
-}
+
 
 export default function Cart() {
 
-  var initialp=getproducts();
+  
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -63,7 +59,7 @@ export default function Cart() {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Place Order
+            Order Placed
           </Typography>
          
         </Toolbar>
@@ -89,49 +85,12 @@ export default function Cart() {
       
       <main className={classes.layout}>
         
-        <Paper className={classes.paper}>
-        <Typography component="h1" variant="h4" align="center">
-            Your Order Details
+      <Paper className={classes.paper}>
+      <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+            Your Order Placed Successfully!
           </Typography>
           
-           </Paper>
-       <Box display="flex" flexDirection="row" flexWrap="wrap" >
-        
-        {
-          initialp.map((row)=> (
-            <div>
-          
-           <Paper className={classes.paper}>
-           <Product ide={row}></Product>
-           </Paper>
-            
-           
-            </div>
-          ))
-        }
-        </Box>
-        <Paper className={classes.paper}>
-        <Typography component="h6" variant="h6" align="left">
-            Total Products:{initialp.length}
-          </Typography>
-          <Typography component="h6" variant="h6" align="left">
-            Total Price:5000
-            
-          </Typography>
-          
-           </Paper>
-
-        <Paper className={classes.paper}>
-        <Button
-                    variant="contained"
-                    color="primary"
-                    onclick={sendtodatabase}
-                    className={classes.button}
-                  >
-                    Submit Order
-                  </Button>
-           </Paper>
-            
+              </Paper>
                   
                 
             

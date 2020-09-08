@@ -16,23 +16,21 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import { mainListItems } from '../listItems';
 import List from '@material-ui/core/List';
-import Item from './Item';
+
+import { connect } from 'react-redux'
+import { addToCart } from '../actions/cartActions'
 
 
 
 
 
-function getproducts() {
-  //Here fetch the all available products from the api and return as a array
-  return ['Product1', 'Product2', 'Product3', 'Product4']
-}
 
 
 
-export default function Catalouge() {
+const Catalouge=(props) => {
 
 
-  var initialp = getproducts();
+  
 
 
 
@@ -48,6 +46,26 @@ export default function Catalouge() {
     setOpen(false);
   };
 
+
+
+const itemList = props.items.map(item=>{
+  
+  return(
+      <div className="card" key={item.id}>
+              <div className="card-image">
+                  
+                  <span className="card-title">{item.title}</span>
+                  <span to="/" className="btn-floating halfway-fab waves-effect waves-light red" onClick={()=>{props.addToCart(item.id);}}><i className="material-icons">add</i></span>
+              </div>
+
+              <div className="card-content">
+                  <p>{item.desc}</p>
+                  <p><b>Price: {item.price} Rupay</b></p>
+              </div>
+       </div>
+
+  )
+})
   //const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
@@ -94,14 +112,10 @@ export default function Catalouge() {
           <Grid container spacing={3}>
 
 
-            <Box display="flex" flexDirection="row" flexWrap="wrap" >
+            <Box className='box' >
 
               {
-                initialp.map((pro) => (<div>
-                  <Paper className={classes.paper} >
-                    <Item productname={pro}></Item>
-                  </Paper>
-                </div>))
+                itemList
               }
             </Box>
 
@@ -196,3 +210,17 @@ const useStyles = makeStyles((theme) => ({
     height: 240,
   },
 }));
+
+const mapStateToProps = (state)=>{
+  return {
+    items: state.items
+  }
+}
+const mapDispatchToProps= (dispatch)=>{
+  
+  return{
+      addToCart: (id)=>{dispatch(addToCart(id))}
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Catalouge)
