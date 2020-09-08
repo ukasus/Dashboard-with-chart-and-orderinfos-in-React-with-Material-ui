@@ -12,7 +12,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import {mainListItems} from '../listItems';
+import { mainListItems } from '../listItems';
 import List from '@material-ui/core/List';
 import Box from '@material-ui/core/Box';
 import Drawer from '@material-ui/core/Drawer';
@@ -25,7 +25,7 @@ import Drawer from '@material-ui/core/Drawer';
 
 export default function Cart() {
 
-  
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -35,13 +35,12 @@ export default function Cart() {
     setOpen(false);
   };
 
-  
- function sendtodatabase(e)
- {
-   //send the order details to the backend server
-   //You can send the post request to the server using axios with the products data
 
- }
+  function sendtodatabase(e) {
+    //send the order details to the backend server
+    //You can send the post request to the server using axios with the products data
+
+  }
   //const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
@@ -49,7 +48,7 @@ export default function Cart() {
       <CssBaseline />
       <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar}>
-        <IconButton
+          <IconButton
             edge="start"
             color="inherit"
             aria-label="open drawer"
@@ -61,7 +60,7 @@ export default function Cart() {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Order Placed
           </Typography>
-         
+
         </Toolbar>
       </AppBar>
       <Drawer
@@ -79,24 +78,24 @@ export default function Cart() {
         <Divider />
         <List>{mainListItems}</List>
         <Divider />
-        
+
       </Drawer>
-      
-      
+
+
       <main className={classes.layout}>
-        
-      <Paper className={classes.paper}>
-      <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+
+        <Paper className={classes.paper}>
+          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Your Order Placed Successfully!
           </Typography>
-          
-              </Paper>
-                  
-                
-            
-         
-        
-        
+
+        </Paper>
+
+
+
+
+
+
       </main>
     </div>
   );
@@ -177,7 +176,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
-    marginTop:20
+    marginTop: 20
   },
   fixedHeight: {
     height: 240,

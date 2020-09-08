@@ -14,12 +14,12 @@ const store = createStore(cartReducer);
 
 ReactDOM.render(
   <Provider store={store}>
-  <BrowserRouter>
-    <ThemeProvider theme={theme}>
-      {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-      <CssBaseline />
-      <App />
-    </ThemeProvider></BrowserRouter>
-    </Provider>,
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <CssBaseline />
+        <App />
+      </ThemeProvider></BrowserRouter>
+  </Provider>,
   document.querySelector('#root'),
 );

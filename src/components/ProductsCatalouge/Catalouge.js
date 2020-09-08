@@ -22,19 +22,7 @@ import { addToCart } from '../actions/cartActions'
 
 
 
-
-
-
-
-
-const Catalouge=(props) => {
-
-
-  
-
-
-
-
+const Catalouge = (props) => {
 
 
   const classes = useStyles();
@@ -48,24 +36,24 @@ const Catalouge=(props) => {
 
 
 
-const itemList = props.items.map(item=>{
-  
-  return(
+  const itemList = props.items.map(item => {
+
+    return (
       <div className="card" key={item.id}>
-              <div className="card-image">
-                  
-                  <span className="card-title">{item.title}</span>
-                  <span to="/" className="btn-floating halfway-fab waves-effect waves-light red" onClick={()=>{props.addToCart(item.id);}}><i className="material-icons">add</i></span>
-              </div>
+        <div className="card-image">
 
-              <div className="card-content">
-                  <p>{item.desc}</p>
-                  <p><b>Price: {item.price} Rupay</b></p>
-              </div>
-       </div>
+          <span className="card-title">{item.title}</span>
+          <span to="/" className="btn-floating halfway-fab waves-effect waves-light red" onClick={() => { props.addToCart(item.id); }}><i className="material-icons">add</i></span>
+        </div>
 
-  )
-})
+        <div className="card-content">
+          <p>{item.desc}</p>
+          <p><b>Price: {item.price} Rupay</b></p>
+        </div>
+      </div>
+
+    )
+  })
   //const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
@@ -204,23 +192,23 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
-    marginTop:5,
+    marginTop: 5,
   },
   fixedHeight: {
     height: 240,
   },
 }));
 
-const mapStateToProps = (state)=>{
+const mapStateToProps = (state) => {
   return {
     items: state.items
   }
 }
-const mapDispatchToProps= (dispatch)=>{
-  
-  return{
-      addToCart: (id)=>{dispatch(addToCart(id))}
+const mapDispatchToProps = (dispatch) => {
+
+  return {
+    addToCart: (id) => { dispatch(addToCart(id)) }
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Catalouge)
+export default connect(mapStateToProps, mapDispatchToProps)(Catalouge)
