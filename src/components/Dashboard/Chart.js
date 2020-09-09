@@ -23,7 +23,7 @@ export default function Chart() {
 
   return (
     <React.Fragment>
-      <Title style="text-align:'center'">Order Amount</Title>
+      <Title >Order Amount</Title>
       <ResponsiveContainer>
         <LineChart
           data={data}

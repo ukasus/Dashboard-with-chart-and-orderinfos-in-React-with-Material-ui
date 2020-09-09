@@ -5,7 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
+
 import Typography from '@material-ui/core/Typography';
 
 import MenuIcon from '@material-ui/icons/Menu';
@@ -14,7 +14,7 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import { mainListItems } from '../listItems';
 import List from '@material-ui/core/List';
-import Box from '@material-ui/core/Box';
+
 import Drawer from '@material-ui/core/Drawer';
 
 
@@ -36,11 +36,7 @@ export default function Cart() {
   };
 
 
-  function sendtodatabase(e) {
-    //send the order details to the backend server
-    //You can send the post request to the server using axios with the products data
 
-  }
   //const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (

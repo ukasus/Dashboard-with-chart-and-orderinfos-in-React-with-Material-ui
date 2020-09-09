@@ -14,10 +14,9 @@ import IconButton from '@material-ui/core/IconButton';
 import { mainListItems } from '../listItems';
 import List from '@material-ui/core/List';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
+
 import Container from '@material-ui/core/Container';
 import Drawer from '@material-ui/core/Drawer';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { removeItem, addQuantity, subtractQuantity } from '../actions/cartActions';
