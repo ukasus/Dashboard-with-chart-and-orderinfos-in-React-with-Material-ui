@@ -10,6 +10,17 @@ npm install
 npm start
 ```
 
+## Dashboard 
 
 
+![alt text](dashboard.png?raw=true)
 
+
+## Product Catalouge
+
+![alt text](productCatalouge.png?raw=true)
+
+
+## Cart
+
+![alt text](cart.png?raw=true)
